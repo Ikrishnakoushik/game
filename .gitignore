@@ -1,0 +1,26 @@
+# Node / React
+node_modules/
+dist/
+.env
+
+# Backend
+backend/node_modules/
+backend/habitcoins.db
+backend/.env
+
+# Flutter
+habitcoins/.dart_tool/
+habitcoins/.flutter-plugins
+habitcoins/.flutter-plugins-dependencies
+habitcoins/build/
+habitcoins/.packages
+habitcoins/pubspec.lock
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
