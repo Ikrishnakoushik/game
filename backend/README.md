@@ -64,8 +64,34 @@ Authorization: Bearer <token>
 | GET  | `/api/rewards`        | Reward catalogue with affordability |
 | POST | `/api/rewards/redeem` | Spend coins — `{reward_id}` |
 
+### Payments (Razorpay)
+| Method | Path | Description |
+|--------|------|-------------|
+| GET  | `/api/payments/packs`         | Coin packs + Pro plan info |
+| POST | `/api/payments/create-order`  | Create Razorpay order — `{type, pack_id}` |
+| POST | `/api/payments/verify`        | Verify payment signature & fulfil — `{razorpay_order_id, razorpay_payment_id, razorpay_signature}` |
+| GET  | `/api/payments/history`       | Last 20 payments for current user |
+
+**Payment flow:**
+1. App calls `POST /create-order` → gets `order_id` + `key_id`
+2. App opens Razorpay checkout with those values
+3. On success Razorpay returns `{order_id, payment_id, signature}`
+4. App calls `POST /verify` → backend checks HMAC, credits coins or activates Pro
+
+**Types:**
+- `type: "coins"` + `pack_id: "pack_500"|"pack_1200"|"pack_2500"`
+- `type: "pro"` (no pack_id needed)
+
+**Setup:**
+```bash
+# Get free test keys from https://dashboard.razorpay.com/app/keys
+RAZORPAY_KEY_ID=rzp_test_...
+RAZORPAY_KEY_SECRET=...
+```
+Test cards: `4111 1111 1111 1111` · any future expiry · any CVV
+
 ---
 
 ## Database
-SQLite file is created automatically at `backend/KarmaCoins.db` on first run.
-Tables: `users`, `habits`, `habit_members`, `checkins`, `friendships`
+SQLite file is created automatically at `backend/karmacoins.db` on first run.
+Tables: `users`, `habits`, `habit_members`, `checkins`, `friendships`, `payments`, `subscriptions`

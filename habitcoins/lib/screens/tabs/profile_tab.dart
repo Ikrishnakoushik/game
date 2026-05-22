@@ -9,6 +9,7 @@ class ProfileTab extends StatelessWidget {
   final bool isPro;
   final List<Habit> habits;
   final VoidCallback onLogout;
+  final VoidCallback onOpenStore;
 
   const ProfileTab({
     super.key,
@@ -17,6 +18,7 @@ class ProfileTab extends StatelessWidget {
     required this.isPro,
     required this.habits,
     required this.onLogout,
+    required this.onOpenStore,
   });
 
   @override
@@ -99,6 +101,26 @@ class ProfileTab extends StatelessWidget {
             ),
           )),
           const SizedBox(height: 16),
+          // Store button
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: onOpenStore,
+              icon: const Text('🪙', style: TextStyle(fontSize: 18)),
+              label: Text(
+                isPro ? 'Store — Buy Coins' : 'Store — Coins & Pro ⭐',
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.purple,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                elevation: 0,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(

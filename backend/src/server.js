@@ -7,6 +7,7 @@ import habitRoutes    from './routes/habits.js';
 import friendRoutes   from './routes/friends.js';
 import leaderRoutes   from './routes/leaderboard.js';
 import rewardRoutes   from './routes/rewards.js';
+import paymentRoutes  from './routes/payments.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -29,6 +30,7 @@ app.use('/api/habits',      requireAuth, habitRoutes);
 app.use('/api/friends',     requireAuth, friendRoutes);
 app.use('/api/leaderboard', requireAuth, leaderRoutes);
 app.use('/api/rewards',     requireAuth, rewardRoutes);
+app.use('/api/payments',    requireAuth, paymentRoutes);
 
 // ── Health check ──────────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => res.json({ status: 'ok', ts: new Date().toISOString() }));
