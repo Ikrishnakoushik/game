@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../../data/models.dart';
 import '../../theme/colors.dart';
 import '../../widgets/avatar.dart';
 
 class HomeTab extends StatelessWidget {
-  final List<Habit> habits;
+  final List<Karma> karmas;
   final int coins;
   final void Function(int id) onCheckin;
 
-  const HomeTab({super.key, required this.habits, required this.coins, required this.onCheckin});
+  const HomeTab({super.key, required this.karmas, required this.coins, required this.onCheckin});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class HomeTab extends StatelessWidget {
           const SizedBox(height: 20),
           const Text('ACTIVE CHALLENGES', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.muted, letterSpacing: 1)),
           const SizedBox(height: 10),
-          ...habits.map((h) => _HabitCard(habit: h, onCheckin: onCheckin)),
+          ...karmas.map((h) => _KarmaCard(karma: h, onCheckin: onCheckin)),
         ],
       ),
     );
@@ -51,22 +51,22 @@ class HomeTab extends StatelessWidget {
   String _fmt(int n) => n.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (m) => '${m[1]},');
 }
 
-class _HabitCard extends StatelessWidget {
-  final Habit habit;
+class _KarmaCard extends StatelessWidget {
+  final Karma karma;
   final void Function(int) onCheckin;
 
-  const _HabitCard({required this.habit, required this.onCheckin});
+  const _KarmaCard({required this.karma, required this.onCheckin});
 
   @override
   Widget build(BuildContext context) {
-    final pct = habit.done / habit.days;
-    final mode = habit.mode;
+    final pct = karma.done / karma.days;
+    final mode = karma.mode;
 
     final modeColor = mode == 'coins' ? AppColors.amberDark : mode == 'donate' ? AppColors.greenText : AppColors.purple;
     final modeBg = mode == 'coins' ? AppColors.amberLight : mode == 'donate' ? AppColors.greenLight : AppColors.purpleLight;
     final modeLabel = mode == 'coins' ? '🪙 Coins' : mode == 'donate' ? '💚 Donate' : '⭐ Pro';
     final barColor = mode == 'coins' ? AppColors.amber : mode == 'donate' ? AppColors.green : AppColors.purple;
-    final rateLabel = mode == 'donate' ? '₹${habit.donateAmount}' : '+${habit.coinRate}';
+    final rateLabel = mode == 'donate' ? '₹${karma.donateAmount}' : '+${karma.coinRate}';
 
     final avatarColors = [
       (bg: AppColors.purpleLight, text: AppColors.purple),
@@ -100,9 +100,9 @@ class _HabitCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(habit.name, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textDark)),
+                    Text(karma.name, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textDark)),
                     const SizedBox(height: 2),
-                    Text('${habit.days}-day • ${habit.members.length} members', style: const TextStyle(fontSize: 12, color: AppColors.muted)),
+                    Text('${karma.days}-day • ${karma.members.length} members', style: const TextStyle(fontSize: 12, color: AppColors.muted)),
                   ],
                 ),
               ),
@@ -132,13 +132,13 @@ class _HabitCard extends StatelessWidget {
                 height: 22,
                 child: Stack(
                   children: List.generate(
-                    habit.members.length.clamp(0, 4),
+                    karma.members.length.clamp(0, 4),
                     (i) => Positioned(
                       left: i * 14.0,
                       child: Container(
                         decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 1.5)),
                         child: AvatarWidget(
-                          initials: habit.members[i].substring(0, 2).toUpperCase(),
+                          initials: karma.members[i].substring(0, 2).toUpperCase(),
                           size: 20,
                           color: avatarColors[i % 4].bg,
                           textColor: avatarColors[i % 4].text,
@@ -148,24 +148,24 @@ class _HabitCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: habit.members.length.clamp(0, 4) * 14.0 + 8),
-              Text('${habit.done}/${habit.days}', style: const TextStyle(fontSize: 12, color: AppColors.muted)),
+              SizedBox(width: karma.members.length.clamp(0, 4) * 14.0 + 8),
+              Text('${karma.done}/${karma.days}', style: const TextStyle(fontSize: 12, color: AppColors.muted)),
               const Spacer(),
               // Check-in button
               GestureDetector(
-                onTap: () => onCheckin(habit.id),
+                onTap: () => onCheckin(karma.id),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: habit.checkedToday ? AppColors.greenLight : AppColors.bg,
+                    color: karma.checkedToday ? AppColors.greenLight : AppColors.bg,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    habit.checkedToday ? '✓ Done' : 'Check in',
+                    karma.checkedToday ? '✓ Done' : 'Check in',
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: habit.checkedToday ? AppColors.green : AppColors.textDark,
+                      color: karma.checkedToday ? AppColors.green : AppColors.textDark,
                     ),
                   ),
                 ),

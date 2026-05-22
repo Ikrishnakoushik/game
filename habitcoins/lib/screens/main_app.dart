@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../data/models.dart';
 import '../theme/colors.dart';
 import 'tabs/home_tab.dart';
@@ -22,7 +22,7 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   int _tabIndex = 0;
-  late List<Habit> _habits;
+  late List<Karma> _karmas;
   int _coins = 1240;
   bool _isPro = false;
   OverlayEntry? _toastEntry;
@@ -30,7 +30,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    _habits = buildInitialHabits();
+    _karmas = buildInitialKarmas();
   }
 
   void _showToast(String msg) {
@@ -60,7 +60,7 @@ class _MainAppState extends State<MainApp> {
 
   void _handleCheckin(int id) {
     setState(() {
-      _habits = _habits.map((h) {
+      _karmas = _karmas.map((h) {
         if (h.id != id || h.checkedToday) return h;
         final earned = _isPro ? h.coinRate * 2 : h.coinRate;
         _coins += earned;
@@ -102,7 +102,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     final screens = [
-      HomeTab(habits: _habits, coins: _coins, onCheckin: _handleCheckin),
+      HomeTab(karmas: _karmas, coins: _coins, onCheckin: _handleCheckin),
       const SearchTab(),
       const FriendsTab(),
       const LeaderboardTab(),
@@ -112,7 +112,7 @@ class _MainAppState extends State<MainApp> {
         user: widget.user,
         coins: _coins,
         isPro: _isPro,
-        habits: _habits,
+        karmas: _karmas,
         onLogout: widget.onLogout,
         onOpenStore: _openStore,
       ),

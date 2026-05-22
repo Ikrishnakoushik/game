@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../../data/models.dart';
 import '../../theme/colors.dart';
 import '../../widgets/avatar.dart';
@@ -7,7 +7,7 @@ class ProfileTab extends StatelessWidget {
   final Map<String, dynamic> user;
   final int coins;
   final bool isPro;
-  final List<Habit> habits;
+  final List<Karma> karmas;
   final VoidCallback onLogout;
   final VoidCallback onOpenStore;
 
@@ -16,14 +16,14 @@ class ProfileTab extends StatelessWidget {
     required this.user,
     required this.coins,
     required this.isPro,
-    required this.habits,
+    required this.karmas,
     required this.onLogout,
     required this.onOpenStore,
   });
 
   @override
   Widget build(BuildContext context) {
-    final completedHabits = habits.where((h) => h.done == h.days).length;
+    final completedKarmas = karmas.where((h) => h.done == h.days).length;
 
     return SafeArea(
       child: ListView(
@@ -64,7 +64,7 @@ class ProfileTab extends StatelessWidget {
             children: [
               _statCard('🪙', _fmt(coins)),
               const SizedBox(width: 10),
-              _statCard('✅', '$completedHabits'),
+              _statCard('✅', '$completedKarmas'),
               const SizedBox(width: 10),
               _statCard('🔥', '15d'),
             ],

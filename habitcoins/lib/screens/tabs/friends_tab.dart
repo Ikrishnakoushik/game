@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../../data/models.dart';
 import '../../theme/colors.dart';
 import '../../widgets/avatar.dart';
@@ -37,7 +37,7 @@ class FriendsTab extends StatelessWidget {
                     children: [
                       Text(f.name, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.textDark)),
                       Text(
-                        '🪙 ${_fmt(f.coins)} coins • ${f.commonHabits} shared habits',
+                        '🪙 ${_fmt(f.coins)} coins • ${f.commonHabits} shared karmas',
                         style: const TextStyle(fontSize: 12, color: AppColors.muted),
                       ),
                     ],

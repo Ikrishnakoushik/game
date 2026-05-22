@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 
 class Friend {
@@ -25,7 +25,7 @@ class Friend {
   });
 }
 
-class Habit {
+class Karma {
   final int id;
   final String name;
   final int days;
@@ -37,7 +37,7 @@ class Habit {
   final int donateAmount;
   final String charity;
 
-  Habit({
+  Karma({
     required this.id,
     required this.name,
     required this.days,
@@ -50,8 +50,8 @@ class Habit {
     required this.charity,
   });
 
-  Habit copyWith({bool? checkedToday, int? done}) {
-    return Habit(
+  Karma copyWith({bool? checkedToday, int? done}) {
+    return Karma(
       id: id,
       name: name,
       days: days,
@@ -111,10 +111,10 @@ final List<Friend> sampleFriends = [
   const Friend(id: 6, name: 'Zara Khan', username: '@zara.khan', coins: 850, avatar: 'ZK', color: AppColors.pinkLight, textColor: AppColors.pink, isConnected: false, commonHabits: 0),
 ];
 
-List<Habit> buildInitialHabits() => [
-  Habit(id: 1, name: 'Morning workout', days: 21, done: 14, mode: 'coins', coinRate: 50, members: ['You', 'Arjun', 'Priya', 'Nikhil'], checkedToday: true, donateAmount: 0, charity: ''),
-  Habit(id: 2, name: 'No social media after 9pm', days: 30, done: 12, mode: 'donate', coinRate: 30, members: ['You', 'Sree', 'Vikram'], checkedToday: false, donateAmount: 15, charity: 'Plant a Tree'),
-  Habit(id: 3, name: 'Sleep before midnight', days: 30, done: 18, mode: 'sub', coinRate: 100, members: ['You', 'Arjun', 'Priya', 'Nikhil', 'Sree'], checkedToday: true, donateAmount: 0, charity: ''),
+List<Karma> buildInitialKarmas() => [
+  Karma(id: 1, name: 'Morning workout', days: 21, done: 14, mode: 'coins', coinRate: 50, members: ['You', 'Arjun', 'Priya', 'Nikhil'], checkedToday: true, donateAmount: 0, charity: ''),
+  Karma(id: 2, name: 'No social media after 9pm', days: 30, done: 12, mode: 'donate', coinRate: 30, members: ['You', 'Sree', 'Vikram'], checkedToday: false, donateAmount: 15, charity: 'Plant a Tree'),
+  Karma(id: 3, name: 'Sleep before midnight', days: 30, done: 18, mode: 'sub', coinRate: 100, members: ['You', 'Arjun', 'Priya', 'Nikhil', 'Sree'], checkedToday: true, donateAmount: 0, charity: ''),
 ];
 
 const List<Reward> rewards = [

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 
 const COLORS = {
   purple: "#6C5CE7",
@@ -86,8 +86,8 @@ function LandingPage({ onGetStarted }) {
   return (
     <div style={{ minHeight: "100vh", background: `linear-gradient(135deg, ${COLORS.purple}, ${COLORS.purpleDark})`, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px", color: "#fff", textAlign: "center" }}>
       <div style={{ fontSize: 60, marginBottom: 16 }}>🪙</div>
-      <h1 style={{ fontSize: 36, fontWeight: 800, marginBottom: 8, fontFamily: "'DM Serif Display', serif" }}>HabitCoins</h1>
-      <p style={{ fontSize: 14, opacity: 0.9, marginBottom: 24, maxWidth: 340, lineHeight: 1.6 }}>Build habits. Earn coins. Compete with friends. Do good. 100% legal in India.</p>
+      <h1 style={{ fontSize: 36, fontWeight: 800, marginBottom: 8, fontFamily: "'DM Serif Display', serif" }}>KarmaCoins</h1>
+      <p style={{ fontSize: 14, opacity: 0.9, marginBottom: 24, maxWidth: 340, lineHeight: 1.6 }}>Build Karmas. Earn coins. Compete with friends. Do good. 100% legal in India.</p>
       <div style={{ display: "flex", flexDirection: "column", gap: 10, width: "100%", maxWidth: 300 }}>
         <button onClick={onGetStarted} style={{ padding: "14px 24px", borderRadius: 12, background: "#fff", color: COLORS.purple, border: "none", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Get started 🚀</button>
         <button style={{ padding: "14px 24px", borderRadius: 12, background: "transparent", color: "#fff", border: "2px solid #fff", fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Learn more</button>
@@ -116,8 +116,8 @@ function AuthScreen({ onAuthComplete, mode }) {
       <div style={{ width: "100%", maxWidth: 380 }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 40, marginBottom: 12 }}>🪙</div>
-          <h2 style={{ fontSize: 24, fontWeight: 800, color: COLORS.text, fontFamily: "'DM Serif Display', serif" }}>{isLogin ? "Welcome back" : "Join HabitCoins"}</h2>
-          <p style={{ fontSize: 13, color: COLORS.muted, marginTop: 6 }}>{isLogin ? "Sign in to your account" : "Start building better habits"}</p>
+          <h2 style={{ fontSize: 24, fontWeight: 800, color: COLORS.text, fontFamily: "'DM Serif Display', serif" }}>{isLogin ? "Welcome back" : "Join KarmaCoins"}</h2>
+          <p style={{ fontSize: 13, color: COLORS.muted, marginTop: 6 }}>{isLogin ? "Sign in to your account" : "Start building better Karmas"}</p>
         </div>
         <div style={{ background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.border}`, padding: 24 }}>
           {!isLogin && (
@@ -152,8 +152,8 @@ function AuthScreen({ onAuthComplete, mode }) {
   );
 }
 
-function ProfileScreen({ user, coins, isPro, habits, onLogout }) {
-  const completedHabits = habits.filter(h => h.done === h.days).length;
+function ProfileScreen({ user, coins, isPro, Karmas, onLogout }) {
+  const completedHabits = Karmas.filter(h => h.done === h.days).length;
   return (
     <div style={{ paddingBottom: 20 }}>
       <div style={{ background: `linear-gradient(135deg, ${COLORS.purple}, ${COLORS.purpleDark})`, borderRadius: 16, padding: 24, color: "#fff", textAlign: "center", marginBottom: 16 }}>
@@ -197,7 +197,7 @@ function SettingsScreen() {
   return (
     <div style={{ paddingBottom: 20 }}>
       <div style={{ fontSize: 12, color: COLORS.muted, fontWeight: 600, letterSpacing: ".06em", textTransform: "uppercase", marginBottom: 10 }}>Notifications</div>
-      {[["Push notifications", "App reminders for check-ins", "pushNotifications"], ["Email updates", "Weekly habit reports", "emailUpdates"]].map(([label, desc, key], i) => (
+      {[["Push notifications", "App reminders for check-ins", "pushNotifications"], ["Email updates", "Weekly Karma reports", "emailUpdates"]].map(([label, desc, key], i) => (
         <div key={i} style={{ background: COLORS.card, border: `1px solid ${COLORS.border}`, borderRadius: 12, padding: "12px 14px", marginBottom: 10, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
             <div style={{ fontWeight: 600, fontSize: 14, color: COLORS.text }}>{label}</div>
@@ -272,25 +272,25 @@ function SearchScreen({ friends }) {
   );
 }
 
-function HabitCard({ habit, onCheckin }) {
-  const pct = Math.round((habit.done / habit.days) * 100);
-  const barColor = habit.mode === "coins" ? COLORS.amber : habit.mode === "donate" ? COLORS.green : COLORS.purple;
+function KarmaCard({ Karma, onCheckin }) {
+  const pct = Math.round((Karma.done / Karma.days) * 100);
+  const barColor = Karma.mode === "coins" ? COLORS.amber : Karma.mode === "donate" ? COLORS.green : COLORS.purple;
   const modeStyles = {
     coins: { bg: COLORS.amberLight, color: "#92400E", label: "🪙 Coins" },
     donate: { bg: COLORS.greenLight, color: "#065F46", label: "💚 Donate" },
     sub: { bg: COLORS.purpleLight, color: COLORS.purple, label: "⭐ Pro" },
   };
-  const m = modeStyles[habit.mode];
+  const m = modeStyles[Karma.mode];
   return (
     <div style={{ background: COLORS.card, borderRadius: 16, border: `1px solid ${COLORS.border}`, padding: "14px 16px", marginBottom: 12 }}>
       <span style={{ background: m.bg, color: m.color, fontSize: 11, fontWeight: 600, padding: "3px 10px", borderRadius: 99, display: "inline-block", marginBottom: 8 }}>{m.label}</span>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 15, color: COLORS.text }}>{habit.name}</div>
-          <div style={{ fontSize: 12, color: COLORS.muted, marginTop: 2 }}>{habit.days}-day • {habit.members.length} members</div>
+          <div style={{ fontWeight: 700, fontSize: 15, color: COLORS.text }}>{Karma.name}</div>
+          <div style={{ fontSize: 12, color: COLORS.muted, marginTop: 2 }}>{Karma.days}-day • {Karma.members.length} members</div>
         </div>
         <span style={{ background: m.bg, color: m.color, fontSize: 12, fontWeight: 600, padding: "3px 10px", borderRadius: 99 }}>
-          {habit.mode === "coins" ? `+${habit.coinRate}` : habit.mode === "donate" ? `₹${habit.donateAmount}` : `+${habit.coinRate}`}
+          {Karma.mode === "coins" ? `+${Karma.coinRate}` : Karma.mode === "donate" ? `₹${Karma.donateAmount}` : `+${Karma.coinRate}`}
         </span>
       </div>
       <div style={{ height: 6, background: COLORS.bg, borderRadius: 99, overflow: "hidden", marginBottom: 10 }}>
@@ -298,29 +298,29 @@ function HabitCard({ habit, onCheckin }) {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
         <div style={{ display: "flex" }}>
-          {habit.members.slice(0, 4).map((mem, i) => (
+          {Karma.members.slice(0, 4).map((mem, i) => (
             <div key={i} style={{ marginLeft: i === 0 ? 0 : -6, border: `2px solid ${COLORS.card}`, borderRadius: "50%" }}>
               <Avatar initials={mem.slice(0, 2).toUpperCase()} size={20}
                 color={[COLORS.purpleLight, COLORS.greenLight, COLORS.amberLight, COLORS.tealLight][i % 4]}
                 textColor={[COLORS.purple, COLORS.green, COLORS.amberDark, COLORS.teal][i % 4]} />
             </div>
           ))}
-          <span style={{ fontSize: 12, color: COLORS.muted, marginLeft: 8, alignSelf: "center" }}>{habit.done}/{habit.days}</span>
+          <span style={{ fontSize: 12, color: COLORS.muted, marginLeft: 8, alignSelf: "center" }}>{Karma.done}/{Karma.days}</span>
         </div>
-        <button onClick={() => onCheckin(habit.id)} style={{
+        <button onClick={() => onCheckin(Karma.id)} style={{
           padding: "6px 12px", borderRadius: 8,
-          background: habit.checkedToday ? COLORS.greenLight : COLORS.bg,
-          color: habit.checkedToday ? COLORS.green : COLORS.text,
+          background: Karma.checkedToday ? COLORS.greenLight : COLORS.bg,
+          color: Karma.checkedToday ? COLORS.green : COLORS.text,
           border: "none", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif",
         }}>
-          {habit.checkedToday ? "✓ Done" : "Check in"}
+          {Karma.checkedToday ? "✓ Done" : "Check in"}
         </button>
       </div>
     </div>
   );
 }
 
-function HomeScreen({ habits, coins, onCheckin }) {
+function HomeScreen({ Karmas, coins, onCheckin }) {
   return (
     <div style={{ paddingBottom: 20 }}>
       <div style={{ background: `linear-gradient(135deg, ${COLORS.purple}, ${COLORS.purpleDark})`, borderRadius: 16, padding: "16px 20px", marginBottom: 16, color: "#fff" }}>
@@ -328,7 +328,7 @@ function HomeScreen({ habits, coins, onCheckin }) {
         <div style={{ fontSize: 32, fontWeight: 800, fontFamily: "'DM Serif Display', serif" }}>🪙 {coins.toLocaleString()}</div>
       </div>
       <div style={{ fontSize: 12, color: COLORS.muted, fontWeight: 600, letterSpacing: ".06em", textTransform: "uppercase", marginBottom: 10 }}>Active challenges</div>
-      {habits.map(h => <HabitCard key={h.id} habit={h} onCheckin={onCheckin} />)}
+      {Karmas.map(h => <KarmaCard key={h.id} Karma={h} onCheckin={onCheckin} />)}
     </div>
   );
 }
@@ -344,7 +344,7 @@ function FriendsScreen({ friends }) {
             <Avatar initials={f.avatar} size={40} color={f.color} textColor={f.textColor} />
             <div>
               <div style={{ fontWeight: 700, fontSize: 14, color: COLORS.text }}>{f.name}</div>
-              <div style={{ fontSize: 12, color: COLORS.muted }}>🪙 {f.coins.toLocaleString()} coins • {f.commonHabits} shared habits</div>
+              <div style={{ fontSize: 12, color: COLORS.muted }}>🪙 {f.coins.toLocaleString()} coins • {f.commonHabits} shared Karmas</div>
             </div>
           </div>
           <button style={{ padding: "6px 12px", borderRadius: 99, fontSize: 11, fontWeight: 600, cursor: "pointer", background: COLORS.bg, border: `1px solid ${COLORS.border}`, fontFamily: "'DM Sans', sans-serif" }}>Message</button>
@@ -403,7 +403,7 @@ export default function HabitCoinsApp() {
   const [page, setPage] = useState("landing");
   const [user, setUser] = useState(null);
   const [tab, setTab] = useState("home");
-  const [habits, setHabits] = useState(HABITS_INIT);
+  const [Karmas, setHabits] = useState(HABITS_INIT);
   const [coins, setCoins] = useState(1240);
   const [isPro, setIsPro] = useState(false);
   const [friends, setFriends] = useState(SAMPLE_FRIENDS.filter(f => f.isConnected));
@@ -435,13 +435,13 @@ export default function HabitCoinsApp() {
   if (page === "auth") return <AuthScreen onAuthComplete={handleAuthComplete} />;
 
   const screens = {
-    home: <HomeScreen habits={habits} coins={coins} onCheckin={handleCheckin} />,
+    home: <HomeScreen Karmas={Karmas} coins={coins} onCheckin={handleCheckin} />,
     search: <SearchScreen friends={friends} />,
     friends: <FriendsScreen friends={friends} />,
     leaderboard: <LeaderboardScreen />,
     rewards: <RewardsScreen coins={coins} />,
     settings: <SettingsScreen />,
-    profile: <ProfileScreen user={user} coins={coins} isPro={isPro} habits={habits} onLogout={handleLogout} />,
+    profile: <ProfileScreen user={user} coins={coins} isPro={isPro} Karmas={Karmas} onLogout={handleLogout} />,
   };
 
   return (

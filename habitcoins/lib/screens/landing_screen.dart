@@ -37,7 +37,7 @@ class LandingScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   const Text(
-                    'Build habits. Earn coins.\nCompete with friends. Do good.\n100% legal in India.',
+                    'Build Karmas. Earn coins.\nCompete with friends. Do good.\n100% legal in India.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 15,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../../theme/colors.dart';
 
 class SettingsTab extends StatefulWidget {
@@ -21,7 +21,7 @@ class _SettingsTabState extends State<SettingsTab> {
         children: [
           _sectionLabel('NOTIFICATIONS'),
           _toggle('Push notifications', 'App reminders for check-ins', _pushNotifications, (v) => setState(() => _pushNotifications = v)),
-          _toggle('Email updates', 'Weekly habit reports', _emailUpdates, (v) => setState(() => _emailUpdates = v)),
+          _toggle('Email updates', 'Weekly Karma reports', _emailUpdates, (v) => setState(() => _emailUpdates = v)),
           const SizedBox(height: 8),
           _sectionLabel('PRIVACY'),
           _toggle('Show on leaderboard', 'Let friends see your rank', _showOnLeaderboard, (v) => setState(() => _showOnLeaderboard = v)),

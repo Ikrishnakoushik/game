@@ -1,6 +1,6 @@
-import jwt from 'jsonwebtoken';
+﻿import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'habitcoins-dev-secret-change-in-prod';
+const JWT_SECRET = process.env.JWT_SECRET || 'KarmaCoins-dev-secret-change-in-prod';
 
 export function signToken(payload) {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });

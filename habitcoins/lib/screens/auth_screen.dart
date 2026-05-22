@@ -55,7 +55,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               const SizedBox(height: 6),
               Text(
-                _isLogin ? 'Sign in to your account' : 'Start building better habits',
+                _isLogin ? 'Sign in to your account' : 'Start building better Karmas',
                 style: const TextStyle(fontSize: 14, color: AppColors.muted),
               ),
               const SizedBox(height: 32),

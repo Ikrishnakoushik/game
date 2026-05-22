@@ -1,4 +1,4 @@
-# KarmaCoins Backend API
+﻿# KarmaCoins Backend API
 
 Node.js + Express + SQLite (built-in `node:sqlite`, no native build needed).
 
@@ -31,14 +31,14 @@ Both signup and login return `{ token, user }`. Pass the token as:
 Authorization: Bearer <token>
 ```
 
-### Habits
+### Karmas
 | Method | Path | Description |
 |--------|------|-------------|
-| GET    | `/api/habits`              | All habits you're a member of |
-| POST   | `/api/habits`              | Create habit — `{name, days, mode, coin_rate, donate_amt, charity}` |
-| POST   | `/api/habits/:id/checkin`  | Check in for today |
-| POST   | `/api/habits/:id/invite`   | Invite user — `{user_id}` (owner only) |
-| DELETE | `/api/habits/:id`          | Delete habit (owner only) |
+| GET    | `/api/Karmas`              | All Karmas you're a member of |
+| POST   | `/api/Karmas`              | Create Karma — `{name, days, mode, coin_rate, donate_amt, charity}` |
+| POST   | `/api/Karmas/:id/checkin`  | Check in for today |
+| POST   | `/api/Karmas/:id/invite`   | Invite user — `{user_id}` (owner only) |
+| DELETE | `/api/Karmas/:id`          | Delete Karma (owner only) |
 
 `mode` values: `coins` | `donate` | `sub`
 
@@ -94,4 +94,4 @@ Test cards: `4111 1111 1111 1111` · any future expiry · any CVV
 
 ## Database
 SQLite file is created automatically at `backend/karmacoins.db` on first run.
-Tables: `users`, `habits`, `habit_members`, `checkins`, `friendships`, `payments`, `subscriptions`
+Tables: `users`, `Karmas`, `karma_members`, `checkins`, `friendships`, `payments`, `subscriptions`

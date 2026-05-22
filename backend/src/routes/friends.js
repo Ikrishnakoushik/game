@@ -1,4 +1,4 @@
-import { Router } from 'express';
+﻿import { Router } from 'express';
 import db from '../db.js';
 
 const router = Router();
@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
   const friends = db.prepare(`
     SELECT u.id, u.name, u.email, u.avatar, u.coins, u.streak,
            (
-             SELECT COUNT(*) FROM habit_members hm1
-             JOIN habit_members hm2 ON hm1.habit_id = hm2.habit_id
+             SELECT COUNT(*) FROM karma_members hm1
+             JOIN karma_members hm2 ON hm1.karma_id = hm2.karma_id
              WHERE hm1.user_id = ? AND hm2.user_id = u.id
            ) AS common_habits
     FROM users u
