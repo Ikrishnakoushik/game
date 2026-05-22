@@ -8,6 +8,12 @@ backend/node_modules/
 backend/habitcoins.db
 backend/habitcoins.db-shm
 backend/habitcoins.db-wal
+backend/karmacoins.db
+backend/karmacoins.db-shm
+backend/karmacoins.db-wal
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
 backend/.env
 
 # Flutter
