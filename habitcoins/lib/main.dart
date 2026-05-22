@@ -4,6 +4,7 @@ import 'screens/landing_screen.dart';
 import 'screens/auth_screen.dart';
 import 'screens/main_app.dart';
 import 'theme/colors.dart';
+import 'services/secure_storage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +55,8 @@ class _AppRouterState extends State<AppRouter> {
     });
   }
 
-  void _onLogout() {
+  Future<void> _onLogout() async {
+    await SecureStorage.clearAll(); // wipe token from OS keychain
     setState(() {
       _user = null;
       _page = 'landing';
