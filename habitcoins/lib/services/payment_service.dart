@@ -7,8 +7,9 @@ import 'package:uuid/uuid.dart';
 import 'secure_storage.dart';
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const String kBaseUrl = 'http://10.0.2.2:3000'; // emulator → localhost
-// Production: 'https://api.karmacoins.in'
+// 10.0.2.2  = Android emulator → your PC's localhost
+// 192.168.x.x = real device on same WiFi → your PC's local IP
+const String kBaseUrl = 'http://192.168.0.4:3000';
 
 // ── Models ────────────────────────────────────────────────────────────────────
 
@@ -69,11 +70,15 @@ Future<http.Response> _securePost(
   final token = await SecureStorage.getValidToken();
   if (token == null) throw const _AuthException('Session expired. Please log in again.');
 
-  // Block plain HTTP in production (allow only for emulator localhost)
+  // Block plain HTTP in production (allow local IPs for development)
   final uri = Uri.parse('$kBaseUrl$path');
-  if (!uri.host.contains('10.0.2.2') &&
-      !uri.host.contains('localhost') &&
-      uri.scheme != 'https') {
+  final host = uri.host;
+  final isLocalDev = host == '10.0.2.2' ||
+      host == 'localhost' ||
+      host.startsWith('192.168.') ||
+      host.startsWith('10.') ||
+      host.startsWith('172.');
+  if (!isLocalDev && uri.scheme != 'https') {
     throw const _SecurityException('Insecure connection blocked.');
   }
 

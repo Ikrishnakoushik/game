@@ -17,12 +17,16 @@ const PORT = process.env.PORT || 3000;
 // ── Security headers (Helmet) ─────────────────────────────────────────────────
 app.use(helmet());
 
-// ── CORS — restrict to your app's origin in production ───────────────────────
+// ── CORS — allow local network in dev, restrict in production ────────────────
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '*').split(',');
 app.use(cors({
-  origin: ALLOWED_ORIGINS.includes('*') ? '*' : (origin, cb) => {
-    if (!origin || ALLOWED_ORIGINS.includes(origin)) cb(null, true);
-    else cb(new Error('Not allowed by CORS'));
+  origin: (origin, cb) => {
+    // Allow requests with no origin (mobile apps, curl)
+    if (!origin) return cb(null, true);
+    // Allow all in dev (*), or check whitelist in prod
+    if (ALLOWED_ORIGINS.includes('*')) return cb(null, true);
+    if (ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+    cb(new Error('Not allowed by CORS'));
   },
   methods: ['GET', 'POST', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key'],
@@ -77,6 +81,21 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-  console.log(`\n🪙  KarmaCoins API running on http://localhost:${PORT}\n`);
+import { networkInterfaces } from 'node:os';
+
+app.listen(PORT, '0.0.0.0', () => {
+  // Find local WiFi IP so you know what to put in kBaseUrl
+  const nets = networkInterfaces();
+  let lanIp = 'unknown';
+  for (const iface of Object.values(nets)) {
+    for (const net of iface ?? []) {
+      if (net.family === 'IPv4' && !net.internal) {
+        lanIp = net.address;
+        break;
+      }
+    }
+  }
+  console.log(`\n🪙  KarmaCoins API running`);
+  console.log(`   Local:   http://localhost:${PORT}`);
+  console.log(`   Network: http://${lanIp}:${PORT}  ← use this in Flutter kBaseUrl\n`);
 });
