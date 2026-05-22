@@ -1,4 +1,4 @@
-import rateLimit from 'express-rate-limit';
+import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
 
 // ── General API limiter — 100 req/min per IP ──────────────────────────────────
 export const apiLimiter = rateLimit({
@@ -9,16 +9,17 @@ export const apiLimiter = rateLimit({
   message: { error: 'Too many requests, please slow down.' },
 });
 
-// ── Payment endpoints — 10 req/min per IP (strict) ───────────────────────────
+// ── Payment endpoints — 10 req/min per user/IP (strict) ──────────────────────
 export const paymentLimiter = rateLimit({
   windowMs: 60 * 1000,
   max: 10,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many payment requests. Please wait before trying again.' },
+  // Use user ID when authenticated, otherwise fall back to IP via the official helper
   keyGenerator: (req) => req.user?.id
-    ? `user_${req.user.id}`   // per-user limit when authenticated
-    : req.ip,                 // per-IP fallback
+    ? `user_${req.user.id}`
+    : ipKeyGenerator(req),
 });
 
 // ── Auth endpoints — 20 req/15min per IP (prevent brute-force) ───────────────
