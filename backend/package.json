@@ -1,7 +1,7 @@
 {
-  "name": "habitcoins-backend",
+  "name": "karmacoins-backend",
   "version": "1.0.0",
-  "description": "HabitCoins REST API",
+  "description": "karmacoins REST API",
   "main": "src/server.js",
   "type": "module",
   "scripts": {

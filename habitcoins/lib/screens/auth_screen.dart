@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -50,7 +50,7 @@ class _AuthScreenState extends State<AuthScreen> {
               const Text('🪙', style: TextStyle(fontSize: 48)),
               const SizedBox(height: 16),
               Text(
-                _isLogin ? 'Welcome back' : 'Join HabitCoins',
+                _isLogin ? 'Welcome back' : 'Join KarmaCoins',
                 style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.textDark),
               ),
               const SizedBox(height: 6),

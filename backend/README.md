@@ -1,4 +1,4 @@
-# HabitCoins Backend API
+# KarmaCoins Backend API
 
 Node.js + Express + SQLite (built-in `node:sqlite`, no native build needed).
 
@@ -67,5 +67,5 @@ Authorization: Bearer <token>
 ---
 
 ## Database
-SQLite file is created automatically at `backend/habitcoins.db` on first run.
+SQLite file is created automatically at `backend/KarmaCoins.db` on first run.
 Tables: `users`, `habits`, `habit_members`, `checkins`, `friendships`

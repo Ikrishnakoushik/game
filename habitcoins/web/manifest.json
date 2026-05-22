@@ -1,6 +1,6 @@
-{
-    "name": "habitcoins",
-    "short_name": "habitcoins",
+﻿{
+    "name": "KarmaCoins",
+    "short_name": "KarmaCoins",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

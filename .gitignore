@@ -6,6 +6,8 @@ dist/
 # Backend
 backend/node_modules/
 backend/habitcoins.db
+backend/habitcoins.db-shm
+backend/habitcoins.db-wal
 backend/.env
 
 # Flutter

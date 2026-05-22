@@ -44,5 +44,5 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n🪙  HabitCoins API running on http://localhost:${PORT}\n`);
+  console.log(`\n🪙  KarmaCoins API running on http://localhost:${PORT}\n`);
 });

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/landing_screen.dart';
 import 'screens/auth_screen.dart';
@@ -13,16 +13,16 @@ void main() {
       statusBarIconBrightness: Brightness.light,
     ),
   );
-  runApp(const HabitCoinsApp());
+  runApp(const KarmaCoinsApp());
 }
 
-class HabitCoinsApp extends StatelessWidget {
-  const HabitCoinsApp({super.key});
+class KarmaCoinsApp extends StatelessWidget {
+  const KarmaCoinsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HabitCoins',
+      title: 'KarmaCoins',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Poppins',

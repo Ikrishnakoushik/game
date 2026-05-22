@@ -1,4 +1,4 @@
-# habitcoins
+﻿# KarmaCoins
 
 A new Flutter project.
 

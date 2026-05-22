@@ -1,4 +1,4 @@
-package com.habitcoins.habitcoins
+﻿package com.karmacoins.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class LandingScreen extends StatelessWidget {
                   const Text('🪙', style: TextStyle(fontSize: 72)),
                   const SizedBox(height: 16),
                   const Text(
-                    'HabitCoins',
+                    'KarmaCoins',
                     style: TextStyle(
                       fontSize: 38,
                       fontWeight: FontWeight.w800,
