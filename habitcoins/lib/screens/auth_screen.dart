@@ -1,5 +1,6 @@
 ﻿import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import '../theme/colors.dart';
 import '../services/secure_storage.dart';
@@ -78,7 +79,7 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Column(
             children: [
               const SizedBox(height: 40),
-              const Text('🪙', style: TextStyle(fontSize: 48)),
+              SvgPicture.asset('assets/icon.svg', width: 72, height: 72),
               const SizedBox(height: 16),
               Text(
                 _isLogin ? 'Welcome back' : 'Join KarmaCoins',

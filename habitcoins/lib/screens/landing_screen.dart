@@ -1,4 +1,5 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../theme/colors.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -24,8 +25,13 @@ class LandingScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('🪙', style: TextStyle(fontSize: 72)),
-                  const SizedBox(height: 16),
+                  // App logo SVG
+                  SvgPicture.asset(
+                    'assets/icon.svg',
+                    width: 120,
+                    height: 120,
+                  ),
+                  const SizedBox(height: 20),
                   const Text(
                     'KarmaCoins',
                     style: TextStyle(
